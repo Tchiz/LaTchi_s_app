@@ -1,4 +1,29 @@
 <resources>
     <string name="app_name">LaTchi\'s App</string>
+
     <string name="cheesake">! Or your cheesecake !</string>
+    <string name="affirmation1">I am strong.</string>
+    <string name="affirmation2">I believe in myself.</string>
+    <string name="affirmation3">Each day is a new opportunity to grow and be a better version of myself.</string>
+    <string name="affirmation4">Every challenge in my life is an opportunity to learn from.</string>
+    <string name="affirmation5">I have so much to be grateful for.</string>
+    <string name="affirmation6">Good things are always coming into my life.</string>
+    <string name="affirmation7">New opportunities await me at every turn.</string>
+    <string name="affirmation8">I have the courage to follow my heart.</string>
+    <string name="affirmation9">Things will unfold at precisely the right time.</string>
+    <string name="affirmation10">I will be present in all the moments that this day brings.</string>
+    <string name="spitch_intro_agence"> Ici, toute l’équipe choisit de travailler ponctuellement et à la fois régulièrement ensemble, en binôme, trinôme et bien plus afin de vous servir sur tous les sujets touchant la valorisation de vos projets et vos structures à travers les mots, les supports de communication, l’humanité de notre savoir-être avec vous, l’excellence de notre passion à vous aider et notre vision artistique, créative et visionnaire de qui vous êtes et de ce que nous comprenons de votre projet et structure.</string>
+    <string name="btn_intro_agence">Venez voir nos projets !</string>
+    <string name="spitch_team_agence"> Ici, nous sommes tous indépendants et futur chef.fe.s d’entreprise. Nous travaillons ensemble pour mieux grandir par l’émulation collective. Ensemble, nous perçons les problématiques professionnelles que nous rencontrons dans nos business respectifs afin de les dépasser. Incubateur de talents passionnés et novateurs, nous choisissons, tels des laborantins, d’amener une communication innovante et humaniste dans le monde professionnel.</string>
+    <string name="btn_team_agence">Nos concepts entrepreneuriaux !</string>
+    <string name="spitch_dream_agence">Nous sommes des rêveuse.eur.s pragmatiques. Ensemble, bousculons-nous et créons les nouvelles fondations de l’Humanité professionnelle.</string>
+    <string name="btn_dream_agence">Venez voir nos valeurs !</string>
+    <string name="lady_h_society_project">Lady H Society</string>
+    <string name="jam_dessine_oct21_project">Week-end Jam Dessiné Oct 2021</string>
+    <string name="moncherwatson_mascotte_project">Mon Cher Watson - mascotte</string>
+    <string name="crapaud_concept">Le concept du crapaud</string>
+    <string name="crapaud_strip_text_1">Connais-tu le concept du crapaud ? C\'est l\'idée que si tu manges ton crapaud, tu as gagné ta journée entreprenariale ! BIG UP SURF en Freelance !</string>
+    <string name="crapaud_strip_text_2">\"Pour Cibee de LaTchi, clairement c\'est notre application Android ! Toi ça serait quoi ton crapaud ? \"</string>
+    <string name="ton_crapaud_wordingFrogEntrepreneurialConcept">Ton crapaud</string>
+    <string name="ton_prenom_wordingFrogEntrepreneurialConcept">Ton prénom</string>
 </resources>

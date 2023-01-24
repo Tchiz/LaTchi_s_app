@@ -23,7 +23,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -57,6 +57,7 @@ dependencies {
     implementation AndroidX.activity.compose
     implementation AndroidX.navigation.compose
     implementation Splitties.pack.androidBase
+    implementation KotlinX.coroutines.core
 
     testImplementation Testing.junit4
 
