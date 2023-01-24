@@ -1,3 +1,5 @@
+package fr.latchi.latchisapp.ui.theme
+
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.media.MediaPlayer
@@ -54,22 +56,7 @@ import fr.latchi.latchisapp.R
 import fr.latchi.latchisapp.data.DataSource
 import fr.latchi.latchisapp.model.GalleryItemModel
 import fr.latchi.latchisapp.model.PartnerModel
-import fr.latchi.latchisapp.ui.theme.Screen
 import kotlinx.coroutines.delay
-import splitties.toast.toast
-
-
-// TODO: quand le sous-titre est trop grand, le texte n'est plus centré, fixé ça
-val FONT_SIZE_SUBTITLE = 16.sp
-val MODIFIER_SUBTITLE = Modifier
-    .fillMaxWidth()
-    .wrapContentWidth(Alignment.CenterHorizontally)
-    .padding(
-        top = 16.dp,
-        start = 16.dp,
-        end = 16.dp
-    )
-
 
 @Composable
 fun Navigation() {
@@ -117,7 +104,7 @@ fun HomePageLaTchisAppScreen(navController: NavController) {
         Animatable(0f)
     }
     LaunchedEffect(
-        key1 = true, //pourquoi true et pas Unit ?
+        key1 = true, //why true and not Unit ?
         block = {
             scale.animateTo(
                 targetValue = 1f,
@@ -172,8 +159,7 @@ fun GalleryItemListScreen(
 
 @Composable
 private fun GalleryItemList(galleryItemModelList: List<GalleryItemModel>) {
-    LazyColumn(
-    ) {
+    LazyColumn {
         items(galleryItemModelList.size) { affirmationIndex ->
             GalleryItemCard(galleryItemModel = galleryItemModelList[affirmationIndex])
         }
@@ -192,20 +178,18 @@ fun GalleryItemCard(galleryItemModel: GalleryItemModel, modifier: Modifier = Mod
             .width(400.dp)
             .clickable(
                 onClick = {
-                    // montre une pop up au-dessus de la carte (fermable au click) + voix-OFF sur la phrase correspondante
+                    // TODO : add voice over for each positive sentence
                     popupControl = true
-                    toast("Love ya !")
                 }
             )
     ) {
-        Column() {
-            //TODO: possibilité de scroller à droite et à gauche pour l'image ou l'ouverture de la popup, utilisation d'une "miniature" avec une possibilité par défaut si c'est un ajout dynamique par l'app
+        Column {
+            //TODO: in the popup, possibility of slide left and right to see the entire picture + use a miniature with possibility of default miniature if it's a dynamic add by the app
             Image(
                 painter = painterResource(id = galleryItemModel.imageResourceId),
                 contentDescription = stringResource(id = galleryItemModel.stringResourceId),
                 modifier = Modifier
                     .fillMaxWidth()
-                    //.height(194.dp),
                     .height(400.dp),
                 contentScale = ContentScale.Crop
             )
@@ -229,7 +213,7 @@ fun GalleryItemCard(galleryItemModel: GalleryItemModel, modifier: Modifier = Mod
                             .fillMaxHeight()
                             .wrapContentWidth(Alignment.CenterHorizontally)
                     ) {
-                        Column() {
+                        Column {
                             Image(
                                 painter = painterResource(id = galleryItemModel.imageResourceId),
                                 contentDescription = stringResource(id = galleryItemModel.stringResourceId),
@@ -251,7 +235,6 @@ fun GalleryItemCard(galleryItemModel: GalleryItemModel, modifier: Modifier = Mod
                                     .wrapContentWidth(Alignment.CenterHorizontally),
                                 onClick = {
                                     popupControl = false
-                                    toast("Take care")
                                 }
                             ) {
                                 Text(
@@ -265,21 +248,13 @@ fun GalleryItemCard(galleryItemModel: GalleryItemModel, modifier: Modifier = Mod
         }
     }
 }
-
-/*
-@Preview
-@Composable
-private fun AffirmationCardPreview(){
-    GalleryItemCard(galleryItemModel = GalleryItemModel(R.string.affirmation1, R.drawable.image1))
-}
-*/
 @Composable
 fun BannerLaTchisapp(
     navController: NavController,
     height : Dp = 100.dp, // avec une valeur par défaut à 100
     isOpen : Boolean = false
 ) {
-    Box(){
+    Box {
         Image(
             painter = painterResource(id = R.drawable.therefore_wedonotloseheart_forandroid),
             contentDescription = "Therefore, we do not lose heart LaTchi",
@@ -360,7 +335,7 @@ fun BusinessCardsLaTchisTeamScreen(navController: NavController) {
             height,
             isOpen
         )
-        // TODO: quand isOpen = false, ajouter titre blanc à la main "L'équipe !"
+        // TODO: when isOpen = false, add white title (draw by myself) "L'équipe !"
         //mettre la liste des partenaires ici
         PartnerModelList(
             navController = navController,
@@ -391,7 +366,7 @@ private fun BusinessCardTeamPresentation(
     navController: NavController,
     businessCardTeam: PartnerModel
 ) {
-    Column() {
+    Column {
         Text(
             text = "${businessCardTeam.firstname} ${businessCardTeam.lastname}",
             fontSize = 56.sp,
@@ -418,10 +393,17 @@ private fun BusinessCardTeamPresentation(
         )
         Text(
             text = businessCardTeam.positionInTheTeam,
-            fontSize = FONT_SIZE_SUBTITLE,
+            fontSize = 16.sp,
             fontWeight = FontWeight.Bold,
             color = Color.White,
-            modifier = MODIFIER_SUBTITLE,
+            modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentWidth(Alignment.CenterHorizontally)
+                .padding(
+                    top = 16.dp,
+                    start = 16.dp,
+                    end = 16.dp
+                ),
             style = MaterialTheme.typography.titleSmall,
             textAlign = TextAlign.Center,
         )
@@ -593,7 +575,7 @@ fun RowScope.Exo3ScreenQuadrant(
         modifier = Modifier
             .background(
                 color = colorBackground,
-                shape = androidx.compose.ui.graphics.RectangleShape
+                shape = RectangleShape
             )
             .padding(16.dp)
             .fillMaxHeight()
@@ -674,7 +656,7 @@ fun CibeePresentationScreen(navController: NavController){
     val imageLaTchisSmile = if (isDoubleLaTchisSmile) R.drawable.bg_compose_background_doublesmile else R.drawable.bg_compose_background
     val namesLaTchi = if(isDoubleLaTchisSmile) "Lova Rakotoarisoa" else "Cibee KAMARA"
 
-    Column() {
+    Column {
         Text(
             text = "Do you know me ?",
             fontSize = 36.sp,
@@ -756,7 +738,7 @@ fun LaTchiLAgenceDeComPresentationScreen(navController: NavController) {
     var stepsIndex by remember {
         mutableStateOf(0)
     }
-    var spitch = spitchList[stepsIndex]
+    val spitch = spitchList[stepsIndex]
     Column(
         modifier = Modifier
             .background(color = Color(0xFFE76263))
@@ -841,7 +823,7 @@ fun LaTchiLAgenceDeComPresentationScreen(navController: NavController) {
 
 @Composable
 fun LazyRowGalleryItemCard(items: List<GalleryItemModel>) {
-    LazyRow() {
+    LazyRow {
         items(items.size) {itemsListIndex ->
             GalleryItemCard(galleryItemModel = items[itemsListIndex])
         }
@@ -894,7 +876,7 @@ fun EntrepreneurialConcepts(navController: NavController) {
                     .wrapContentWidth(Alignment.CenterHorizontally)
             )
 
-            val crapaudItems = listOf<GalleryItemModel>(
+            val frogItems = listOf(
                 GalleryItemModel(
                     stringResourceId = R.string.crapaud_strip_text_1,
                     imageResourceId = R.drawable.strip_crapaud_1
@@ -904,7 +886,7 @@ fun EntrepreneurialConcepts(navController: NavController) {
                     imageResourceId = R.drawable.strip_crapaud_2
                 )
             )
-            LazyRowGalleryItemCard(items = crapaudItems)
+            LazyRowGalleryItemCard(items = frogItems)
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -921,17 +903,13 @@ fun EntrepreneurialConcepts(navController: NavController) {
     }
 }
 @Composable
-fun ConfirmationSettingFrogBlock(
-    firstname: String,
-    monCrapaud: String
-) {
-        Box() {
+fun ConfirmationSettingFrogBlock() {
+        Box {
             Image(
                 painter = painterResource(id = R.drawable.crapaud__miniature),
                 contentDescription = "Ton crapaud",
                 modifier = Modifier
                     .clip(RoundedCornerShape(150.dp))
-                    //.width(200.dp)
             )
         }
 }
@@ -954,7 +932,7 @@ fun SettingFrogScreen(navController: NavController) {
             .fillMaxHeight()
     ) {
         BannerLaTchisapp(navController = navController)
-        //TODO: permettre à l'utilisateur d'entrer son crapaud et son prénom et d'avoir un FrogScreen personnalisé et que cela s'affiche directement à l'écran de façon "jolie"
+        //TODO: permettre à l'utilisateur d'entrer son crapaud et son prénom et d'avoir un fr.latchi.latchisapp.ui.theme.FrogScreen personnalisé et que cela s'affiche directement à l'écran de façon "jolie"
         CibeesFrogBlockFrogScreen(firstname = "Cibee") // TODO: revoir la signature et le nom de la fonction
         Column(
             modifier = Modifier
@@ -971,7 +949,7 @@ fun SettingFrogScreen(navController: NavController) {
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
 
-            Column() {
+            Column {
                 Text(text = stringResource(R.string.ton_prenom_wordingFrogEntrepreneurialConcept), color = Color.White)
                 TextField(
                     value = firstname,
@@ -1011,7 +989,7 @@ fun SettingFrogScreen(navController: NavController) {
                     navController.navigate(Screen.FrogScreen.route)
                 }
             ) {
-                    ConfirmationSettingFrogBlock(firstname, monCrapaud)
+                    ConfirmationSettingFrogBlock()
             }
         }
     }
@@ -1052,7 +1030,6 @@ fun MusicBlockFrogScreen(modifier : Modifier, modifierContent : Modifier) {
 
 @Composable
 fun FrogScreen(navController: NavController) {
-    val firstname = "Cibee"
     val modifier = Modifier
         .fillMaxWidth()
         .wrapContentWidth(Alignment.CenterHorizontally)
@@ -1063,9 +1040,9 @@ fun FrogScreen(navController: NavController) {
         .wrapContentWidth(Alignment.CenterHorizontally)
     val modifierSpacer = Modifier.height(20.dp)
 
-    Column() {
+    Column {
         BannerLaTchisapp(navController = navController)
-        directiveBlockFrogScreen(firstname = firstname, modifier, modifierContent)
+        DirectiveBlockFrogScreen(modifier, modifierContent)
         Spacer(modifier = modifierSpacer)
         CheesecakeAnimationBlockFrogScreen()
         Spacer(modifier = modifierSpacer)
@@ -1079,7 +1056,7 @@ fun FrogScreen(navController: NavController) {
                 modifier = Modifier.padding(6.dp),
                 onClick =  {
                     //TODO: Présentation de Cibee à mettre au clique de sa photo
-                    //navController.navigate(Screen.CibeePresentationScreen.route)
+                    //navController.navigate(Screen.fr.latchi.latchisapp.ui.theme.CibeePresentationScreen.route)
                     //TODO: faire en sorte que ça arrive sur le bon "onglet" de la présentation LaTchi L'Agence cad "Team Presentation" avec pour bouton Concepts Entrepreneuriaux
                     navController.navigate(Screen.LaTchiLAgenceDeComScreen.route)
                 }
@@ -1124,8 +1101,7 @@ fun CibeesFrogBlockFrogScreen(firstname: String) {
 }
 
 @Composable
-fun directiveBlockFrogScreen(
-    firstname: String,
+fun DirectiveBlockFrogScreen(
     modifier : Modifier,
     modifierContent: Modifier
 ){
@@ -1146,7 +1122,6 @@ fun directiveBlockFrogScreen(
              * TODO: donner le nom de la personne "connecter", donc créer une possibilité d'entrer son nom pour que ce soit un écran personnalisé au nom de l'utilisateur.
              * TODO: Pour le moment une persistence simple puis une vraie connection sur l'application complète
              * */
-            //text = "Eat your frog $firstname !",
             textAlign = TextAlign.Center,
             color = Color(0xFFC67501),
             fontSize = 12.sp,
