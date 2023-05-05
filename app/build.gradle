@@ -3,7 +3,15 @@ import static de.fayard.refreshVersions.core.Versions.versionFor
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'app.cash.sqldelight'
+    id "app.cash.sqldelight" version "2.0.0-alpha05"
+}
+
+sqldelight {
+    databases {
+        Database { // This will be the name of the generated database class.
+            packageName = "fr.latchi.latchisapp"
+        }
+    }
 }
 
 android {
@@ -66,7 +74,7 @@ dependencies {
     implementation AndroidX.navigation.compose
     implementation Splitties.pack.androidBase
     implementation KotlinX.coroutines.core
-    implementation "app.cash.sqldelight:android-driver:_"
+    implementation "app.cash.sqldelight:android-driver:2.0.0-alpha05"
 
     testImplementation Testing.junit4
     //testImplementation CashApp.sqlDelight.drivers.jdbcSqlite
@@ -80,10 +88,3 @@ dependencies {
 }
 
 
-sqldelight {
-    databases {
-        create("Database") {
-            packageName.set("fr.latchi.latchisapp")
-        }
-    }
-}
