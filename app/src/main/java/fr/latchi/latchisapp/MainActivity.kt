@@ -2,7 +2,7 @@ package fr.latchi.latchisapp
 
 import fr.latchi.latchisapp.ui.theme.Navigation
 import android.os.Bundle
-import android.util.Log
+//import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
@@ -12,7 +12,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import fr.latchi.latchisapp.ui.theme.LaTchisAppTheme
-import sqldelight.com.squareup.sqlite.migrations.Database
+//import sqldelight.com.squareup.sqlite.migrations.Database
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
