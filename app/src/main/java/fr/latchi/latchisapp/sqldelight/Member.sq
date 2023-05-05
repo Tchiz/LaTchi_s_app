@@ -1,0 +1,25 @@
+CREATE TABLE latchiMember (
+    member_number INTEGER PRIMARY KEY NOT NULL,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
+    position_team TEXT NOT NULL,
+    phone_number TEXT NOT NULL,
+    email_address TEXT NOT NULL,
+    agency_service TEXT NOT NULL,
+    profile_picture TEXT NOT NULL
+);
+
+selectAll:
+SELECT *
+FROM latchiMember
+ORDER BY member_number;
+
+selectByMemberNumber:
+SELECT *
+FROM latchiMember
+WHERE member_number = ?;
+
+deleteByMemberNumber:
+DELETE
+FROM latchiMember
+WHERE member_number = ?;

@@ -3,15 +3,16 @@ import static de.fayard.refreshVersions.core.Versions.versionFor
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'app.cash.sqldelight'
 }
 
 android {
-    compileSdk 33
+    compileSdkVersion 33
 
     defaultConfig {
         applicationId "fr.latchi.latchisapp"
-        minSdk 22
-        targetSdk 33
+        minSdkVersion 22
+        targetSdkVersion 33
         versionCode 2
         versionName "1.1"
 
@@ -39,6 +40,7 @@ android {
     }
     composeOptions {
         kotlinCompilerExtensionVersion versionFor(project, AndroidX.compose.compiler)
+        //kotlinCompilerExtensionVersion = "1.7.20"
     }
     packagingOptions {
         resources {
@@ -58,8 +60,10 @@ dependencies {
     implementation AndroidX.navigation.compose
     implementation Splitties.pack.androidBase
     implementation KotlinX.coroutines.core
+    implementation "app.cash.sqldelight:android-driver:_"
 
     testImplementation Testing.junit4
+    //testImplementation CashApp.sqlDelight.drivers.jdbcSqlite
 
     androidTestImplementation AndroidX.test.ext.junit
     androidTestImplementation AndroidX.test.espresso.core
@@ -67,4 +71,12 @@ dependencies {
 
     debugImplementation AndroidX.compose.ui.tooling
     debugImplementation AndroidX.compose.ui.testManifest
+}
+
+sqldelight {
+    databases {
+        create("Database") {
+            packageName.set("fr.latchi.latchisapp")
+        }
+    }
 }
